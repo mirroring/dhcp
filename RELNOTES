@@ -25,10 +25,22 @@ For information on how to install, configure and run this software,
 as well as how to find documentation and report bugs, please consult
 the README file.
 
-
 			Changes since 3.1.0b2
 
-- None
+- Silenced compiler warnings on NetBSD
+
+- Failover rebalance events no longer play ping pong with round errors
+  (moving leases between free and back to backup where there are an
+  odd number of leases).
+
+- The 'pool' log line has been split into two messages, one before the
+  rebalance run, and one after.
+
+- Any queued BNDACKs are transmitted before transmitting new BNDUPDs.
+  This enforces the correct sequence of events for the remote server
+  processing these messages.
+
+- Fixed a bug in which write_lease() might report a failure incorrectly
 
 			Changes since 3.1.0b1
 
@@ -242,6 +254,11 @@ the README file.
 
 - Encapsulated option spaces within encapsulated option spaces is now
   formally supported.
+
+			Changes since 3.0.6rc1
+
+- supersede_lease() now requeues leases in their respective hardware
+  address hash bucket.  This mirrors client identifier behaviour.
 
 			Changes since 3.0.5
 
