@@ -63,6 +63,10 @@ suggested fixes to <dhcp-users@isc.org>.
   as a hex list.  We shall investigate other ways of displaying time
   values more usefully.  [ISC-Bugs #22626]
 
+- Fix the handling of connection requests on the failover port.
+  This was a security issue in 4.2.0 but is not in  4.0.x.
+  [ISC-Bugs #22679]
+
 			Changes since 4.0.3rc1
 
 ! Handle a relay forward message with an unspecified address in the
