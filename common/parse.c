@@ -3,7 +3,7 @@
    Common parser code for dhcpd and dhclient. */
 
 /*
- * Copyright (c) 2004-2010 by Internet Systems Consortium, Inc. ("ISC")
+ * Copyright (c) 2004-2011 by Internet Systems Consortium, Inc. ("ISC")
  * Copyright (c) 1995-2003 by Internet Software Consortium
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -372,13 +372,6 @@ parse_ip6_addr(struct parse *cfile, struct iaddr *addr) {
 
 	char v6[sizeof("ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255")];
 	int v6_len;
-
-        if (local_family != AF_INET6) {
-                parse_warn(cfile, "IPv6 addresses are only available "
-				  "in DHCPv6 mode.");
-                skip_to_semi(cfile);
-                return 0;
-        }
 
 	/*
 	 * First token is non-raw. This way we eat any whitespace before 
