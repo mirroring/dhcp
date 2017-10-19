@@ -27,6 +27,7 @@
  */
 
 #include "dhcpd.h"
+#include <isc/util.h>
 #include <syslog.h>
 
 /* Enumerations can be specified in option formats, and are used for

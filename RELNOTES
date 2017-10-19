@@ -66,6 +66,13 @@ We welcome comments from DHCP users, about this or anything else we do.
 Email Vicky Risk, Product Manager at vicky@isc.org or discuss on 
 dhcp-users@lists.isc.org.
 
+			Changes since 4.3.6
+
+- Added explicit include of BIND9 isc/util.h to adapt to revisisions
+  in BIND9 (see BIND9 ticket #46311).  Prior to this the build was failing
+  with implicit function declaration errors for POST() and INSIST().
+  [ISC-bugs #46332]
+
 			Changes since 4.3.6b1
 
 - None
