@@ -73,6 +73,10 @@ dhcp-users@lists.isc.org.
   with implicit function declaration errors for POST() and INSIST().
   [ISC-bugs #46332]
 
+- Corrected dhclient command line parsing for --dad-wait-time that causes
+  even valid values to fail as invalid on some environments.
+  [ISC-Bugs #46535]
+
 			Changes since 4.3.6b1
 
 - None
