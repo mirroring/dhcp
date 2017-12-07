@@ -2902,6 +2902,10 @@ char *piaddrmask(struct iaddr *, struct iaddr *);
 char *piaddrcidr(const struct iaddr *, unsigned int);
 u_int16_t validate_port(char *);
 u_int16_t validate_port_pair(char *);
+#if defined(DHCPv6)
+const char * pin6_addr(const struct in6_addr *src);
+#endif
+
 
 /* dhclient.c */
 extern int nowait;

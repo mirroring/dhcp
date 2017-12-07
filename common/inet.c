@@ -646,3 +646,19 @@ validate_port_pair(char *port) {
 
 	return htons((u_int16_t)local_port);
 }
+
+#ifdef DHCPv6
+/* Print a v6 address from an in6_addr struct */
+const char *
+pin6_addr(const struct in6_addr *src){
+
+	if (!src) {
+		return ("<null>");
+	}
+
+	struct iaddr addr;
+	addr.len = 16;
+	memcpy(addr.iabuf, src->s6_addr, 16);
+	return (piaddr(addr));
+}
+#endif
