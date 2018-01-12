@@ -3,7 +3,7 @@
    Turn data structures into printable text. */
 
 /*
- * Copyright (c) 2004-2016 by Internet Systems Consortium, Inc. ("ISC")
+ * Copyright (c) 2004-2018 by Internet Systems Consortium, Inc. ("ISC")
  * Copyright (c) 1995-2003 by Internet Software Consortium
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -1623,4 +1623,44 @@ char *format_lease_id(const unsigned char *s, unsigned len,
 			break;
 	}
 	return (idstr);
+}
+
+
+/*
+ * Convert a relative path name to an absolute path name
+ *
+ * Not all versions of realpath() support NULL for
+ * the second parameter and PATH_MAX isn't defined
+ * on all systems.  For the latter, we'll make what
+ * ought to be a big enough buffer and let it fly.
+ * If passed an absolute path it should return it
+ * an allocated buffer.
+ */
+char *absolute_path(const char *orgpath) {
+	char *abspath = NULL;
+	if (orgpath) {
+#ifdef PATH_MAX
+		char buf[PATH_MAX];
+#else
+		char buf[2048];
+#endif
+		errno = 0;
+                if (realpath(orgpath, buf) == NULL) {
+			const char* errmsg = strerror(errno);
+                        log_fatal("Failed to get realpath for %s: %s",
+				  orgpath, errmsg);
+		}
+
+		/* dup the result into an allocated buffer */
+		abspath = dmalloc(strlen(buf) + 1, MDL);
+		if (abspath == NULL)  {
+			log_fatal("No memory for filename:%s\n",
+				  buf);
+		}
+
+		memcpy (abspath, buf, strlen(buf));
+		abspath[strlen(buf)] = 0x0;
+	}
+
+	return (abspath);
 }
