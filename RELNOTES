@@ -56,12 +56,6 @@ Our next major version of ISC DHCP, version 4.4.0, will be re-licensed under
 the Mozilla Public License, MPL 2.0.  To read the MPL 2.0 license terms, please
 refer to: https://www.mozilla.org/en-US/MPL/2.0/.
 
-This change will apply to ISC DHCP version 4.4.0 and any 4.4.x versions.  Older
-versions already published under the ISC license will remain under the ISC
-license.  Those unsure whether or not the license change affects their use of
-ISC DHCP, or who wish to discuss how to comply with the license may contact
-ISC at info@isc.org or use https://www.isc.org/mission/contact/.
-
 We welcome comments from DHCP users, about this or anything else we do.
 Email Vicky Risk, Product Manager at vicky@isc.org or discuss on
 dhcp-users@lists.isc.org.
@@ -149,6 +143,14 @@ dhcp-users@lists.isc.org.
 - Added clarifying text to dhcpd.conf.5 explaining the class match expressions
   cannot rely on the results of executable statements.
   [ISC-Bugs #45451]
+
+- Support for sending and receiving additional DHCP4 options has been added
+  to both the dhcpd and dhclient.  Specifically: option codes 93,94, and 97
+  (RFC 4578); code 150 (RFC 5859); and codes 209,219, and 211 (RFC 5071).
+  Beyond configuring, sending, requesting, and receiving these options neither
+  server nor client apply any additional logic based on their values.
+  Thanks to Peter Lewis for requesting this change.
+  [ISC-Bugs 47062]
 
 			Changes since 4.3.6b1
 
